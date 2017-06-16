@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>JSON Comparator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.2/css/bulma.css">
+    <style media="screen">
+      #noti{
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container box">
+      <div class="box">
+        <h1 class="title is-1">JSON Comparator</h1>
+        <div class="notification is-primary is-active" id="noti">
+          Primar lorem ipsum dolor sit amet, consectetur
+          adipiscing elit lorem ipsum dolor sit amet,
+          consectetur adipiscing elit
+        </div>
+          <div class="columns">
+            <div class="column">
+              <div class="field">
+                <label class="label">JSON A</label>
+                <p class="control">
+                  <textarea class="textarea" id="json_a" placeholder="JSON A Here!">{"eiei": {"wow": "bear", "jellato" : "gum"}, "key": "val", "diff_val": "a"}</textarea>
+                </p>
+              </div>
+            </div>
+            <div class="column">
+              <div class="field">
+                <label class="label">JSON B</label>
+                <p class="control">
+                  <textarea class="textarea" id="json_b" placeholder="JSON B Here!">{"foo": "bar", "jellato": "gum", "diff_val": "b"}</textarea>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="field">
+              <p class="control">
+                <button class="button is-success" onclick="onClick()">Submit</button>
+              </p>
+            </div>
+          </div>
+          <div class="column">
+            <h2 class="title is-2">Result</h2>
+            <table class="table" id="table">
+              <thead>
+                <tr>
+                  <th>Path</th>
+                  <th>JSON_A</th>
+                  <th>JSON_B</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+      </div>
+    </div>
+    <script src="./app.js" charset="utf-8"></script>
+  </body>
+</html>
