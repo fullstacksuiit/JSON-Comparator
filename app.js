@@ -20,6 +20,24 @@ onClick = () => {
   }
 }
 
+onClickMerge = () => {
+  let jsona = document.getElementById("json_a").value;
+  let jsonb = document.getElementById("json_b").value;
+  try{
+    let differ = mergejson(JSON.parse(jsona), JSON.parse(jsonb));
+    if(Object.keys(differ).length === 0){
+      shownoti('primary', 'All Match!!');
+    }
+    else{
+      shownoti('none', 'none');
+    }
+    document.getElementById("json_merge").value = JSON.stringify(differ);
+  }
+  catch(e){
+    shownoti('danger', 'Error: ' + e);
+  }
+}
+
 shownoti = (status, text) => {
   let noti = document.getElementById("noti");
   noti.classList.remove("is-primary");
@@ -71,5 +89,34 @@ comparejson = (jsona, jsonb) => {
 
   compareIter(jsona, jsonb, '', true);
   compareIter(jsonb, jsona, '', false);
+  return diff;
+}
+
+mergejson = (jsona, jsonb) => {
+  var diff = {};
+
+  combineObjs = (obj, target) => {
+    for (let key of Object.keys(obj)) {
+      console.log(obj[key].toString(), typeof(obj[key]));
+      if (typeof obj[key] === 'object') {
+        console.log("thinks object")
+        if (!target[key]) {
+          target[key] = {};
+        }
+        combineObjs(obj[key], target[key]);
+      }
+      else {
+        if (target[key]) {
+          target[key + "_1"] = obj[key];
+        }
+        else {
+          target[key] = obj[key];
+        }
+      }
+    }
+  }
+
+  combineObjs(jsona, diff);
+  combineObjs(jsonb, diff);
   return diff;
 }
